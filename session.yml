@@ -1,0 +1,16 @@
+name: blender
+digest: create
+
+services:
+   - name: application
+     image_name: sconecuratedimages/iexec:blender
+     mrenclaves: [96936b6760d1f59b18f2c1a3fa2be205a91d6667dfc6635e8d0bbc1687bc03f2]
+     command: blender -b /encryptedInputs/iexec-rlc.blend -o /encryptedOutputs/ -f 1
+     pwd: /
+     environment:
+        SCONE_MODE: hw
+
+images:
+   - name: sconecuratedimages/iexec:blender
+     mrenclaves: [96936b6760d1f59b18f2c1a3fa2be205a91d6667dfc6635e8d0bbc1687bc03f2]
+     tags: [demo]
