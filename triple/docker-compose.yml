@@ -1,7 +1,7 @@
 version: '3.2'
 services:
         cas:
-                command: sh -c "SCONE_HEAP=1G cas -c/etc/cas/cas.toml"
+                
                 environment:    
                 - SCONE_LOG=7
                 - SCONE_MODE=HW  
@@ -19,6 +19,8 @@ services:
                   protocol: tcp
                   mode: host
                 container_name: cas
+                networks:
+                - romain-net
 
         las:
                 image: iexechub/sconecuratedimages-iexec:las-v3.0
@@ -30,14 +32,16 @@ services:
                           protocol: tcp
                           mode: host
                 container_name: las
-
+                networks:
+                - romain-net
         scone:
                 volumes: 
                   - /home/romain/iexectest/:/home/
                 image: sconecuratedimages/public-apps:python-3.7.3-alpine3.10-scone3.0 
                 container_name: scone
                 command: sh -c "apk add curl && tail -f"
-
+                networks:
+                - romain-net
 networks:
         default:
                 external:
